@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import json
 from flask import Flask, request, jsonify
 from sklearn.cluster import DBSCAN
 from sklearn import metrics
@@ -57,7 +58,12 @@ class DBSCAN:
 def INPUTDATA():
     data ={} 
     dbsc = DBSCAN()
-    return jsonify(dbsc.labels)
+    with open('output.json', 'r') as myfile:
+        data=myfile.read()
+    # parse file
+    obj = json.loads(data)
+    #print(obj) 
+    return jsonify(obj)
 
 
 if __name__ == '__main__':

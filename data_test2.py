@@ -1,6 +1,7 @@
 import random
 import numpy as np
 import pandas as pd
+import json
 
 Choice = []
 Choice1 = []
@@ -51,3 +52,6 @@ for i,x in enumerate(data):
 
 df = pd.DataFrame(output)
 df.to_csv (r'test_set_01.csv', index = False, header=True)
+
+with open('output.json', 'w') as json_file:
+    json.dump(data, json_file)

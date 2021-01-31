@@ -35,3 +35,9 @@ for i,x in enumerate(thisdict):
 
 df = pd.DataFrame(output)
 df.to_csv (r'test5_XY.csv', index = False, header=True)
+
+with open('output.json', 'r') as myfile:
+    data=myfile.read()
+# parse file
+obj = json.loads(data)
+#print(obj) 

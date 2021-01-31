@@ -41,17 +41,17 @@ for i,x in enumerate(Choice):
 def Average(lst): 
     return sum(lst) / len(lst) 
 
-output = []
+pre_data = []
 for i,x in enumerate(data):
-    #output.append([Average(data[i]["Choice"]) , data[i]["Result"]] )
-    output.append([Average(data[i]["Choice"]) , data[i]["Result"] * (data[i]["Week"]+1)] )
-    #output.append([Average(data[i]["Choice"]) * (data[i]["Week"]+1) , data[i]["Result"]] )
+    #pre_data.append([Average(data[i]["Choice"]) , data[i]["Result"]] )
+    pre_data.append([Average(data[i]["Choice"]) , data[i]["Result"] * (data[i]["Week"]+1)] )
+    #pre_data.append([Average(data[i]["Choice"]) * (data[i]["Week"]+1) , data[i]["Result"]] )
 
 
-#print(output)
+#print(pre_data)
 
-df = pd.DataFrame(output)
+df = pd.DataFrame(pre_data)
 df.to_csv (r'test_set_01.csv', index = False, header=True)
 
-with open('output.json', 'w') as json_file:
+with open('pre_data.json', 'w') as json_file:
     json.dump(data, json_file)

@@ -25,7 +25,16 @@ core_samples_mask = np.zeros_like(db.labels_, dtype=bool)
 core_samples_mask[db.core_sample_indices_] = True
 labels = db.labels_
 
-print(labels)
+df = pd.DataFrame(labels)
+file = 'labels.csv'
+pd.DataFrame(columns=['labels']).to_csv(file, index=False)
+df.to_csv(file, header=None, index=False, mode='a')
+
+
+df = pd.DataFrame(X)
+file = 'new_point.csv'
+pd.DataFrame(columns=['X','Y']).to_csv(file, index=False)
+df.to_csv(file, header=None, index=False, mode='a')
 
 # Number of clusters in labels, ignoring noise if present.
 n_clusters_ = len(set(labels)) - (1 if -1 in labels else 0)

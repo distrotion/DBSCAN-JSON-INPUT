@@ -30,7 +30,16 @@ class DBSCAN:
     labels = db.labels_
 
     
+    df = pd.DataFrame(labels)
+    file = 'labels_p.csv'
+    pd.DataFrame(columns=['labels']).to_csv(file, index=False)
+    df.to_csv(file, header=None, index=False, mode='a')
 
+
+    df = pd.DataFrame(X)
+    file = 'new_point_p.csv'
+    pd.DataFrame(columns=['X','Y']).to_csv(file, index=False)
+    df.to_csv(file, header=None, index=False, mode='a')
     
     # Number of clusters in labels, ignoring noise if present.
     n_clusters_ = len(set(labels)) - (1 if -1 in labels else 0)
@@ -56,18 +65,51 @@ class DBSCAN:
     # #############################################################################
     # Plot result
     
-    
+ 
+def Average(lst): 
+    return sum(lst) / len(lst)     
 
 @app.route('/test', methods=['POST'])
 def INPUTDATA():
-    data ={} 
+    data = request.json 
+
+    pre_data = []
+    for i,x in enumerate(data):
+        #pre_data.append([Average(data[i]["Choice"]) , data[i]["Result"]] )
+        pre_data.append([Average(data[i]["Choice"]) , data[i]["Result"] * (data[i]["Week"]+1)] )
+        #pre_data.append([Average(data[i]["Choice"]) * (data[i]["Week"]+1) , data[i]["Result"]] )
+
+
+    #print(pre_data)
+
+    df = pd.DataFrame(pre_data)
+    df.to_csv (r'test_set_01.csv', index = False, header=True)
+
     dbsc = DBSCAN()
-    with open('output.json', 'r') as myfile:
-        data=myfile.read()
-    # parse file
-    obj = json.loads(data)
-    #print(obj) 
-    return jsonify(obj)
+
+    label_p = []
+    df=pd.read_csv('labels_p.csv')
+    for index, row in df.iterrows():
+        d=row.to_dict()
+        label_p.append(d)
+        #print(d)
+
+    point_p = []
+    df=pd.read_csv('new_point_p.csv')
+    for index, row in df.iterrows():
+        d=row.to_dict()
+        point_p.append(d)
+        #print(d)
+
+    output =[]
+    dic={}
+    for i,x in enumerate(point_p):
+        dic['label'] = label_p[i]
+        dic['point'] = point_p[i]
+        output.append(dic)
+        dic={}    
+
+    return jsonify(output)
 
 
 if __name__ == '__main__':

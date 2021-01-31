@@ -9,8 +9,27 @@ from sklearn.preprocessing import StandardScaler
 
 app = Flask(__name__)
 
-class DBSCAN:
-    
+
+ 
+def Average(lst): 
+    return sum(lst) / len(lst)     
+
+@app.route('/test', methods=['POST'])
+def INPUTDATA():
+    data = request.json 
+
+    pre_data = []
+    for i,x in enumerate(data):
+        #pre_data.append([Average(data[i]["Choice"]) , data[i]["Result"]] )
+        pre_data.append([Average(data[i]["Choice"]) , data[i]["Result"] * (data[i]["Week"]+1)] )
+        #pre_data.append([Average(data[i]["Choice"]) * (data[i]["Week"]+1) , data[i]["Result"]] )
+
+
+    #print(pre_data)
+
+    df = pd.DataFrame(pre_data)
+    df.to_csv (r'test_set_01.csv', index = False, header=True)
+#-------------------------------------------------------------------------------------------------------------------------------------------------------
     # #############################################################################
     # Generate sample data
     #centers = [[1, 1], [-1, -1], [1, -1] , [-1, 1]]
@@ -64,29 +83,7 @@ class DBSCAN:
 
     # #############################################################################
     # Plot result
-    
- 
-def Average(lst): 
-    return sum(lst) / len(lst)     
-
-@app.route('/test', methods=['POST'])
-def INPUTDATA():
-    data = request.json 
-
-    pre_data = []
-    for i,x in enumerate(data):
-        #pre_data.append([Average(data[i]["Choice"]) , data[i]["Result"]] )
-        pre_data.append([Average(data[i]["Choice"]) , data[i]["Result"] * (data[i]["Week"]+1)] )
-        #pre_data.append([Average(data[i]["Choice"]) * (data[i]["Week"]+1) , data[i]["Result"]] )
-
-
-    #print(pre_data)
-
-    df = pd.DataFrame(pre_data)
-    df.to_csv (r'test_set_01.csv', index = False, header=True)
-
-    dbsc = DBSCAN()
-
+#-------------------------------------------------------------------------------------------------------------------------------------------------------
     label_p = []
     df=pd.read_csv('labels_p.csv')
     for index, row in df.iterrows():

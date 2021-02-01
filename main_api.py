@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import json
+import os
 from flask import Flask, request, jsonify
 from sklearn.cluster import DBSCAN
 from sklearn import metrics
@@ -110,5 +111,5 @@ def INPUTDATA():
 
 
 if __name__ == '__main__':
-   app.run(debug = True,port=6001)
+   app.run(debug = True,port=int(os.environ.get('PORT',6001)))
 

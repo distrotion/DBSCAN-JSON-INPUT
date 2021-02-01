@@ -29,7 +29,12 @@ def create_hero():
     req = request.json
     hero = SUPERHEROES.push(req)
 
-    return flask.jsonify({'id': hero.key})
+    return flask.jsonify({"Status":"OK"})
+
+@app.route('/get_hero', methods=['POST'])
+def read_hero():
+    hero = SUPERHEROES.get()
+    return flask.jsonify(hero)
 
 @app.route('/setup', methods=['POST'])
 def setup():  

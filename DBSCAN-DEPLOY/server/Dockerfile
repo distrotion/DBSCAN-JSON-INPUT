@@ -4,6 +4,7 @@ RUN pip install numpy gunicorn
 RUN pip install pandas
 RUN pip install flask
 RUN pip install sklearn
+RUN pip install firebase-admin
 
 COPY src/ app/
 

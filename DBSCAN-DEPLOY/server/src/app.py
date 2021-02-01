@@ -33,7 +33,8 @@ def create_hero():
 
 @app.route('/get_hero', methods=['POST'])
 def read_hero():
-    hero = SUPERHEROES.get()
+    hero = db.collection('superheroes').get()
+
     return flask.jsonify(hero)
 
 @app.route('/setup', methods=['POST'])

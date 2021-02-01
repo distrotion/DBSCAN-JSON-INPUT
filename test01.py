@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import uuid 
 
 ##
 thisdict = [
@@ -21,7 +22,8 @@ thisdict = [
 
 
 
-
+id = uuid.uuid1() 
+print (id.hex) 
 
 def Average(lst): 
     return sum(lst) / len(lst) 
@@ -33,11 +35,11 @@ for i,x in enumerate(thisdict):
 
 #print(output)
 
-df = pd.DataFrame(output)
-df.to_csv (r'test5_XY.csv', index = False, header=True)
+#df = pd.DataFrame(output)
+#df.to_csv (r'test5_XY.csv', index = False, header=True)
 
-with open('output.json', 'r') as myfile:
-    data=myfile.read()
+#with open('output.json', 'r') as myfile:
+#    data=myfile.read()
 # parse file
-obj = json.loads(data)
+#obj = json.loads(data)
 #print(obj) 

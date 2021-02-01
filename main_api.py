@@ -13,9 +13,18 @@ app = Flask(__name__)
 
  
 def Average(lst): 
-    return sum(lst) / len(lst)     
+    return sum(lst) / len(lst)   
 
-@app.route('/test', methods=['POST'])
+@app.route('/setup', methods=['POST'])
+def setup():  
+    data_setup = request.json
+
+    with open('setup.json', 'w') as outfile:
+        json.dump(data_setup, outfile)    
+    
+    return jsonify({"Status":"OK"})
+
+@app.route('/DBSCAN', methods=['POST'])
 def INPUTDATA():
     data = request.json 
 
@@ -29,7 +38,16 @@ def INPUTDATA():
     #print(pre_data)
 
     df = pd.DataFrame(pre_data)
-    df.to_csv (r'test_set_01.csv', index = False, header=True)
+    df.to_csv (r'data_set_01.csv', index = False, header=True)
+
+
+    with open('setup.json', 'r') as myfile:
+        setup_data=myfile.read()
+    # parse file
+    obj_setup = json.loads(setup_data)
+    print(obj_setup)
+    print(obj_setup['esp'])
+    print(obj_setup['min_samples'])
 #-------------------------------------------------------------------------------------------------------------------------------------------------------
     # #############################################################################
     # Generate sample data
@@ -37,14 +55,14 @@ def INPUTDATA():
     #X, labels_true = make_blobs(n_samples=750, centers=centers, cluster_std=0.4,
     #                            random_state=0)
 
-    X = pd.read_csv('test_set_01.csv') 
+    X = pd.read_csv('data_set_01.csv') 
 
 
     X = StandardScaler().fit_transform(X)
 
     # #############################################################################
     # Compute DBSCAN
-    db = DBSCAN(eps=0.3, min_samples=20).fit(X)
+    db = DBSCAN(eps=obj_setup['esp'], min_samples=obj_setup['min_samples']).fit(X)
     core_samples_mask = np.zeros_like(db.labels_, dtype=bool)
     core_samples_mask[db.core_sample_indices_] = True
     labels = db.labels_
@@ -104,6 +122,7 @@ def INPUTDATA():
     for i,x in enumerate(point_p):
         dic['label'] = label_p[i]
         dic['point'] = point_p[i]
+        dic['UID'] = data[i]['UID']
         output.append(dic)
         dic={}    
 

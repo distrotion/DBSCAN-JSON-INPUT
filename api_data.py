@@ -2,6 +2,7 @@ import random
 import numpy as np
 import pandas as pd
 import json
+import uuid 
 from flask import Flask, request, jsonify
 from sklearn.cluster import DBSCAN
 from sklearn import metrics
@@ -9,6 +10,7 @@ from sklearn.datasets import make_blobs
 from sklearn.preprocessing import StandardScaler
 
 app = Flask(__name__)
+id = uuid.uuid1() 
 
 @app.route('/test', methods=['POST'])
 def INPUTDATA():
@@ -16,6 +18,7 @@ def INPUTDATA():
     Choice1 = []
     Result = []
     Week=[]
+    UID=[]
 
     for i in range(1000):
         if i%2 == 1:
@@ -31,6 +34,7 @@ def INPUTDATA():
                 Choice1.append(random.randint(0,3))
         Choice.append(Choice1)
         Choice1 = []
+        UID.append(id.hex+"x{}".format(i))
 
     #print(Result)
 
@@ -40,6 +44,7 @@ def INPUTDATA():
         dic["Choice"] = Choice[i]
         dic["Result"] = Result[i]
         dic["Week"] = Week[i]
+        dic["UID"] = UID[i]
         data.append(dic)
         dic={}
 

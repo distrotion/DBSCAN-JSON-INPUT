@@ -153,7 +153,7 @@ def INPUTDATA():
     return jsonify(output)
 
 @app.route('/DBSCAN_no_db', methods=['POST'])
-def INPUTDATA():
+def INPUTDATA_no_db():
     data = request.json 
 
     pre_data = []

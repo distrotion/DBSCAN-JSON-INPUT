@@ -33,7 +33,7 @@ def create_hero():
 
 @app.route('/get_hero', methods=['POST'])
 def read_hero():
-    hero = SUPERHEROES..get()
+    hero = SUPERHEROES.get()
 
     return jsonify(hero)
 

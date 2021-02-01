@@ -1,6 +1,6 @@
 FROM python:3.8
 
-RUN pip install numpy pandas json os flask sklearn gunicorn
+RUN pip install numpy pandas os flask sklearn gunicorn
 
 COPY src/ app/
 

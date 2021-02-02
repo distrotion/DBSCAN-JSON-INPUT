@@ -150,7 +150,7 @@ def INPUTDATA():
     for i,x in enumerate(point_p):
         dic['label'] = label_p[i]
         dic['point'] = point_p[i]
-        dic['UID'] = data[i]['UID']
+        dic['Uid'] = data[i]['Uid']
         output.append(dic)
         dic={}    
 
@@ -254,7 +254,7 @@ def INPUTDATA_no_db():
     for i,x in enumerate(point_p):
         dic['label'] = label_p[i]
         dic['point'] = point_p[i]
-        dic['UID'] = data[i]['UID']
+        dic['Uid'] = data[i]['Uid']
         output.append(dic)
         dic={}    
 

@@ -22,18 +22,22 @@ def INPUTDATA():
     Skip=[]
 
     for i in range(1000):
-        if i%2 == 1:
-            Result.append(random.uniform(13.00,14.00))
-        elif i%2 == 0:
-            Result.append(random.uniform(10.00,11.00))
+
+        Result.append(random.uniform(13.00,14.00))
         Week.append(random.randint(0,1))
         Skip.append(random.randint(0,1))
         #print(i)
         for j in range(9):
-            if i%2 == 1:
+            if i%5 == 1:
                 Choice1.append(random.randint(2,5))
-            elif i%2 == 0:
-                Choice1.append(random.randint(0,3))
+            elif i%5 == 2:
+                Choice1.append(random.randint(3,5))
+            elif i%5 == 3:
+                Choice1.append(random.randint(4,5))
+            elif i%5 == 4:
+                Choice1.append(random.randint(4,5))
+            elif i%5 == 0:
+                Choice1.append(random.randint(0,3))            
         Choice.append(Choice1)
         Choice1 = []
         UID.append(id.hex+"x{}".format(i))
@@ -47,6 +51,7 @@ def INPUTDATA():
         dic["Result"] = Result[i]
         dic["Week"] = Week[i]
         dic["UID"] = UID[i]
+        dic["Skip"] = Skip[i]
         data.append(dic)
         dic={}
 

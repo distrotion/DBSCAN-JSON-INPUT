@@ -6,11 +6,12 @@ Choice = []
 Choice1 = []
 Result = []
 Week=[]
+Skip=[]
 
 for i in range(800):
     Result.append(random.uniform(13.00,14.00))
-    Week.append(random.randint(0,5))
-
+    Week.append(random.randint(0,2))
+    Skip.append(random.randint(0,2)
     for j in range(9):
         Choice1.append(random.randint(0,9))
     Choice.append(Choice1)
@@ -23,6 +24,7 @@ dic={}
 for i,x in enumerate(Choice):
     dic["Choice"] = Choice[i]
     dic["Result"] = Result[i]
+    dic["Skip"] = Skip[i]
     dic["Week"] = Week[i]
     data.append(dic)
     dic={}

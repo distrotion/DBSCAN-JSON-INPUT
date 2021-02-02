@@ -150,7 +150,7 @@ def INPUTDATA():
     for i,x in enumerate(point_p):
         dic['label'] = label_p[i]
         dic['point'] = point_p[i]
-        dic['UID'] = data[i]['UID']
+        dic['Uid'] = data[i]['Uid']
         output.append(dic)
         dic={}    
 
@@ -163,8 +163,8 @@ def INPUTDATA_no_db():
     pre_data = []
     for i,x in enumerate(data):
         #pre_data.append([Average(data[i]["Choice"]) , data[i]["Result"]] )
-        pre_data.append([Average(data[i]["Choice"]) , data[i]["Result"] * (data[i]["Skip"]+1)] )
-        #pre_data.append([Average(data[i]["Choice"]) * (data[i]["Skip"]+1) , data[i]["Result"]] )
+        pre_data.append([Average(data[i]["Choice"]) , data[i]["Result"] * (data[i]["Week"]+1)] )
+        #pre_data.append([Average(data[i]["Choice"]) * (data[i]["Week"]+1) , data[i]["Result"]] )
 
 
     #print(pre_data)
@@ -254,7 +254,7 @@ def INPUTDATA_no_db():
     for i,x in enumerate(point_p):
         dic['label'] = label_p[i]
         dic['point'] = point_p[i]
-        dic['UID'] = data[i]['UID']
+        dic['Uid'] = data[i]['Uid']
         output.append(dic)
         dic={}    
 

@@ -51,9 +51,10 @@ def INPUTDATA():
     data_input = request.json 
     data_push_p = mindfit.push(data_input)
     input_j = mindfit.get()
+    input_key_list = [*input_j]
     data = []
-	for i in range(len(input_key_list)):
-		data.append(input_j["{}".format(input_key_list[i])])
+    for i in range(len(input_key_list)):
+        data.append(input_j["{}".format(input_key_list[i])])
 
     pre_data = []
     for i,x in enumerate(data):

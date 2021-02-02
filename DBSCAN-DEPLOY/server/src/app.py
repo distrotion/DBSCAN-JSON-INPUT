@@ -265,7 +265,7 @@ def INPUTDATA_FB_DB():
     return jsonify(output)
 
 @app.route('/DBSCAN_FB_DB_RESULT', methods=['POST'])
-def INPUTDATA_FB_DB():
+def INPUTDATA_FB_DB_RESULT():
     input_j = mindfit.get()
     input_key_list = [*input_j]
     data = []

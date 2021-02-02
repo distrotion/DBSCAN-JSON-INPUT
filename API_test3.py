@@ -1,4 +1,6 @@
 from flask import Flask, request, jsonify
+import json
+
 
 app = Flask(__name__)
 
@@ -6,10 +8,14 @@ app = Flask(__name__)
 def my_json():
 	
 	input_j = request.json
+	input_key_list = [*input_j]
 
+	data_list = []
+	for i in range(len(input_key_list)):
+		data_list.append(input_j["{}".format(input_key_list[i])])
 
-	print(request.json)							
-	return jsonify(input_j['-MSUwvmr68HPMSjYSqUL'])
+	print(len(input_key_list))							
+	return jsonify(data_list)
 	
 
 if __name__ == '__main__':

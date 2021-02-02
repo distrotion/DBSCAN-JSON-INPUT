@@ -15,7 +15,7 @@ def my_json():
 
 		res2 = requests.post('https://dbscan-deploy-nmdlf3uxjq-as.a.run.app/DBSCAN', json=res.json())	
 
-		#print(res2.json())			
+		print("RESULT: {} <--".format(i),res2.json())			
 
 		time.sleep(2)		
 	return jsonify(res2.json())

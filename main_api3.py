@@ -59,8 +59,8 @@ def INPUTDATA():
     pre_data = []
     for i,x in enumerate(data):
         #pre_data.append([Average(data[i]["Choice"]) , data[i]["Result"]] )
-        pre_data.append([Average(data[i]["Choice"]) , data[i]["Result"] * (data[i]["Week"]+1)] )
-        #pre_data.append([Average(data[i]["Choice"]) * (data[i]["Week"]+1) , data[i]["Result"]] )
+        pre_data.append([Average(data[i]["Choice"]) , data[i]["Result"] * (data[i]["Skip"]+1)] )
+        #pre_data.append([Average(data[i]["Choice"]) * (data[i]["Skip"]+1) , data[i]["Result"]] )
 
 
     #print(pre_data)

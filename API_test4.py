@@ -8,12 +8,12 @@ app = Flask(__name__)
 
 @app.route('/test', methods=['POST'])
 def my_json():
-	for i in range(100):
+	for i in range(1000):
 		res = requests.post('https://us-central1-nicetynine-mind-fit.cloudfunctions.net/setMindTestWeekyScore', json={})
 
 		print("ROUND: {} -->".format(i),res.json())	
 
-		res2 = requests.post('https://dbscan-deploy-nmdlf3uxjq-as.a.run.app/DBSCAN', json=res.json())	
+		res2 = requests.post('https://dbscan-deploy-u2heuu2mna-et.a.run.app/DBSCAN', json=res.json())	
 
 		print("RESULT: {} <--".format(i),res2.json())			
 

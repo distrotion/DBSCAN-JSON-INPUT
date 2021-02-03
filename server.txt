@@ -1,0 +1,7 @@
+gcloud builds submit --tag gcr.io/first-test-api-01/dbscan-deploy    #test server
+gcloud run deploy --image gcr.io/first-test-api-01/dbscan-deploy     #test server
+https://dbscan-deploy-nmdlf3uxjq-as.a.run.app                        #test server
+
+gcloud builds submit --tag gcr.io/nicetynine-mind-fit/dbscan-deploy  #production server
+gcloud run deploy --image gcr.io/nicetynine-mind-fit/dbscan-deploy   #production server
+https://dbscan-deploy-u2heuu2mna-et.a.run.app                        #production server

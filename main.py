@@ -54,8 +54,8 @@ print('Estimated number of noise points: %d' % n_noise_)
 #      % metrics.adjusted_mutual_info_score(labels_true, labels))
 
 
-#print("Silhouette Coefficient: %0.3f"
-#      % metrics.silhouette_score(X, labels))
+print("Silhouette Coefficient: %0.3f"
+      % metrics.silhouette_score(X, labels))
 
 # #############################################################################
 # Plot result
